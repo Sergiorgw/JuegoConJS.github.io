@@ -3,6 +3,7 @@ let nombre =prompt("Ingrese nombre de Jugador");
 let puntos = 0;
 let necesarios = 10;
 let tiempo = 40;
+// suma de puntos
 function sumarPuntos(){
    puntos++;
    document.getElementById("puntos").innerHTML = "Puntos: <b>" + puntos + "/" + necesarios + "  </b>";
@@ -14,15 +15,20 @@ function sumarPuntos(){
       alert( nombre + " ganaste :)");
    }
 }
-
+// restar tiempo
 function restarTiempo() {
 	tiempo--;
 	document.getElementById("tiempo").innerHTML = "&nbsp;&nbsp;&nbsp;Tiempo: "+tiempo; 
 	if (tiempo == 0) {
-		alert(nombre +" perdiste compi");
+      alert(nombre +" perdiste compi");
 		tiempo = 0;
 		puntos = 0;
 	}
 }
 
 setInterval(restarTiempo,1000);
+
+// Almacenar info en el Storage (se guarda y no desaparece si se refresca)
+   const juegos = {nombre: "PelotaRoja", puntos:10};
+   localStorage.setItem("juegos", JSON.stringify(juegos));
+   console.log(juegos);

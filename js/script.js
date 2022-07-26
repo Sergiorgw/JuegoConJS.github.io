@@ -1,8 +1,9 @@
 document.getElementById('player').addEventListener("mouseover",sumarPuntos);
-let nombre =prompt("Ingrese nombre de Jugador");
+
+const nombre = prompt("Ingrese nombre de Jugador")
 let puntos = 0;
 let necesarios = 10;
-let tiempo = 40;
+let tiempo = 35;
 // suma de puntos
 function sumarPuntos(){
    puntos++;
@@ -12,7 +13,11 @@ function sumarPuntos(){
    document.getElementById("player").style.marginTop =randNum + "px";
    document.getElementById("player").style.marginLeft =randNum2 + "px";
    if (puntos == 10) {
-      alert( nombre + " ganaste :)");
+      Swal.fire(
+         'Buen trabajo!',
+         'GANASTE ' + nombre,
+         'success'
+      );
    }
 }
 // restar tiempo
@@ -20,7 +25,11 @@ function restarTiempo() {
 	tiempo--;
 	document.getElementById("tiempo").innerHTML = "&nbsp;&nbsp;&nbsp;Tiempo: "+tiempo; 
 	if (tiempo == 0) {
-      alert(nombre +" perdiste compi");
+      Swal.fire({
+         icon: 'error',
+         title: 'Perdiste...',
+         text: 'Lo siento pero perdiste 😥'
+      });
 		tiempo = 0;
 		puntos = 0;
 	}

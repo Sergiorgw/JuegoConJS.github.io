@@ -37,7 +37,44 @@ function restarTiempo() {
 
 setInterval(restarTiempo,1000);
 
-// Almacenar info en el Storage (se guarda y no desaparece si se refresca)
    const juegos = {nombre: "PelotaRoja", puntos:10};
    localStorage.setItem("juegos", JSON.stringify(juegos));
    console.log(juegos);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   // const options = {
+   //    method: 'GET',
+   //    headers: {
+   //       'X-RapidAPI-Key': '066f60cca9msh814c076435b9e41p1a8cc2jsndfe5db79189b',
+   //       'X-RapidAPI-Host': 'free-epic-games.p.rapidapi.com'
+   //    }
+   // };
+
+   // fetch('https://free-epic-games.p.rapidapi.com/free', options)
+   //    .then(response => response.json())
+   //    .then(response => console.log(response))
+   //    .catch(err => console.error(err));
+   
+

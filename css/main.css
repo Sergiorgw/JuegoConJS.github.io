@@ -6,6 +6,12 @@
 body{
 	background-color: rgb(75, 87, 70);
 }
+.nav-contactanos{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    padding-right: 30px;
+}
 .titulo{
 	background-color: rgb(26, 31, 23);
 	align-items: center;

@@ -1,9 +1,6 @@
-// Valida formulario y realiza petición API para envío de correo
 
-// creamos una constante para document y asi solo usar d
 const d = document;
 
-// Realiza una validacion de formulario
 function contactForm() {
     const $form = d.querySelector(".contact-form");
     $inputs = d.querySelectorAll(".contact-form [required]");
@@ -15,12 +12,10 @@ function contactForm() {
     $span.classList.add("contact-form-error", "none");
     input.insertAdjacentElement("afterend", $span);
 });
-  // Valida la entrada del input al sacar el mosue de esta
     d.addEventListener("keyup", (e) => {
     if (e.target.matches(".contact-form [required]")) {
         let $input = e.target,
         pattern = $input.pattern || $input.dataset.pattern;
-      // agrega un cartel de error segun lo que pongamos en tittle de los inputs
         if (pattern && $input.value !== "") {
         let regex = new RegExp(pattern);
         return !regex.exec($input.value)
@@ -36,21 +31,12 @@ function contactForm() {
     }
 });
 
-  // Valida el boton enviar y previene que la pagina se refresque
 d.addEventListener("submit", (e) => {
     e.preventDefault();
     const $loader = d.querySelector(".contact-form-loader"),
     $response = d.querySelector(".contact-form-response");
 
     $loader.classList.remove("none");
-
-    // API envía correo electrónico a traves de una petición AJAX
-    /*
-     *  Para activar con tu correo, debes ingresar tu Email donde están los números de mi key
-     *  Asi puedes probar la API funcional y ver el resultado en tu correo.
-     * Debes ingresar a https://formsubmit.co/ para mas informacion.
-     */
-    //Aqui el usuario debe cambiar el parametro por su correo y realizar la activacion de la API
     fetch("https://formsubmit.co/ajax/TUCORREO@CORREO.CL", {
         method: "POST",
         body: new FormData(e.target)
@@ -58,16 +44,11 @@ d.addEventListener("submit", (e) => {
         .then((respuesta) =>
             respuesta.ok ? respuesta.json() : Promise.reject(res)
         )
-        // Si la respuesta es correcta toma 3 segundos en realizar el envio
         .then((json) => {
         console.log(json);
-        // agrega un loader debajo del boton enviar
         $loader.classList.add("none");
-        // remueve el loader una vez realizada la peticion
         $response.classList.remove("none");
-        // agrega un mensaje de la API
         $response.innerHTML = `<p>${json.message}</p>`;
-        // Si es ok, envia una alerta con datos enviados
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -84,10 +65,8 @@ d.addEventListener("submit", (e) => {
             icon: "success",
             title: "Los datos han sido enviados"
         });
-        // Si es enviado el formulario este se limpia
         $form.reset();
     })
-      // Si la respuesta de la API es erronea arroja un error con sweetalert
     .catch((error) => {
         console.log(error);
         const Toast = Swal.mixin({
@@ -120,5 +99,4 @@ d.addEventListener("submit", (e) => {
 });
 }
 
-// Se agrega un evento si el contenido es cargado se realiza el llamado.
 d.addEventListener("DOMContentLoaded", contactForm);
